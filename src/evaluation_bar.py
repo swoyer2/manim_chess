@@ -40,7 +40,7 @@ class EvaluationBar(Mobject):
         self.white_rectangle = Rectangle(width=0.25, height=3.2, stroke_color=self.WHITE, fill_opacity=1).set_fill(self.WHITE)
         self.bot_text = Text('0.0', font="Arial").move_to(self.black_rectangle.get_bottom() + np.array([0, 0.2, 0])).set_fill(self.BLACK).scale(0.2)
         self.top_text = Text('0.0', font="Arial").move_to(self.black_rectangle.get_top() + np.array([0, -0.2, 0])).set_fill(self.WHITE).scale(0.2)
-        self.add_rectangles()
+        self.__add_rectangles()
 
     def set_evaluation(self, evaluation: float):
         """
@@ -75,7 +75,7 @@ class EvaluationBar(Mobject):
         new_rect = Rectangle(width=0.25, height=rect_height, stroke_color=self.WHITE, fill_opacity=1).set_fill(self.WHITE).move_to(pos)
         return [Transform(self.white_rectangle, new_rect), text_transformation]
 
-    def add_rectangles(self) -> None:
+    def __add_rectangles(self) -> None:
         """
         Adds the rectangles and text to the evaluation bar.
         """

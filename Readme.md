@@ -111,16 +111,23 @@ This example shows how to add and adjust the values of the evaluation bar
 
 
 ```python
+from manim import *
+import manim_chess
+
 
 class EvalBarExample(MovingCameraScene):
     def construct(self):
-        chess_board = manim_chess.board.Board()
+        chess_board = manim_chess.Board()
         chess_board.set_board_from_FEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") # Also can set the default board with no arguments
 
-        eval_bar = mc.evaluation_bar.EvaluationBar()
-		eval_bar.move_to(chess_board.get_left()).shift(LEFT*0.5)
+        eval_bar = manim_chess.EvaluationBar()
+        eval_bar.move_to(chess_board.get_left()).shift(LEFT*0.5)
 
         self.add(chess_board, eval_bar)
+        self.wait()
+        self.play(eval_bar.set_evaluation(1.5))
+        self.wait()
+        self.play(eval_bar.set_evaluation(-3))
         self.wait()
 ```
 
