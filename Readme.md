@@ -16,7 +16,6 @@ pip install manim-chess
 - **Special Moves**: Handle special chess moves like castling and en passant.
 - **Load FEN Strings**: Load and display a board configuration from a FEN string.
 - **Play PGN Files**: Load and animate moves from PGN files.
-- **Basic Sounds**: Moving a piece and castling sounds.
 - **Evaluation Bar**: Allows the creation and ability to display an evaluation bar.
 - **Update Evaluation Bar**: Can update the value in the evaluation bar with externally obtained evaulations.
 - **Mark Squares**: Can mark and unmark squares to highlight them.
@@ -35,11 +34,12 @@ This example initializes the chessboard and shows how you can move a piece.
 
 
 ```python
+from manim import *
 import manim_chess
 
 class MovingPieces(Scene):
     def construct(self):
-        chess_board = manim_chess.board.Board()
+        chess_board = manim_chess.Board()
         chess_board.set_board_from_FEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") # Also can set the default board with no arguments
 
         # Define the moves you want to be done with the default notation (starting_square, ending_square, promotion_piece)
@@ -48,7 +48,7 @@ class MovingPieces(Scene):
 
         self.add(chess_board)
         self.wait()
-        manim_chess.game_player.play_game(scene=self, board=chess_board, moves=moves)
+        manim_chess.play_game(scene=self, board=chess_board, moves=moves)
         self.wait()
 ```
 
