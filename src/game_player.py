@@ -30,6 +30,8 @@ def play_game(scene, board: Board, moves: list[Tuple[str, str, str]], eval_bar: 
     None
     """
     # Resize the evals array if not enough
+    if not evals:
+        evals = []
     while len(evals) < len(moves):
         evals.append(0)
 
@@ -46,15 +48,12 @@ def play_game(scene, board: Board, moves: list[Tuple[str, str, str]], eval_bar: 
         
         # Check for castling, if True move the rook next to the king
         if __check_for_castle(board, move):
-            scene.add_sound('sounds/castle.mps')
             letters_in_order = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8}
             direction = letters_in_order[move[1][0]] - letters_in_order[move[0][0]]
             if direction > 1:
                 board.move_piece(f'h{move[0][1]}', f'f{move[0][1]}')
             else:
                 board.move_piece(f'a{move[0][1]}', f'd{move[0][1]}')
-        else:
-            scene.add_sound('sounds/move.mps')
 
         board.move_piece(move[0], move[1])
         if move[2]:
@@ -66,6 +65,7 @@ def play_game(scene, board: Board, moves: list[Tuple[str, str, str]], eval_bar: 
     
         end_time = time.time()  # End timing
         print(f"Took {end_time - start_time:.2f} seconds to execute.")  # Print the duration
+        scene.wait()
 
 def __check_for_en_passant(board: Board, move: Tuple[str, str, str]) -> bool:
     """

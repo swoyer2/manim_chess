@@ -243,7 +243,7 @@ class Board(Mobject):
         coordinate = f'{number_to_letter[index % 8]}{8 - math.floor(index / 8)}'
         return coordinate
 
-    def set_board_from_FEN(self, FEN="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1": str) -> None:
+    def set_board_from_FEN(self, FEN: str="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") -> None:
         """
         Sets up the board pieces according to a FEN string. Default FEN is the standard start of game.
 
