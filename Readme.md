@@ -55,18 +55,20 @@ class MovingPieces(Scene):
 ### Using a PGN Notation
 This example demonstrates playing moves from a PGN file on the chessboard. NOTE if you are starting from a different FEN than the standard start of a game, include FEN=your_fen_string
 
-![PGNExample](https://github.com/codevardhan/manim-chess-plugin/blob/main/example/PlayPGNExample.gif?raw=true)
+![PGNExample](https://github.com/swoyer2/manim_chess/blob/main/gifs/PGN_example.gif)
 
 
 ```python
+from manim import *
+import manim_chess
 
 class PGN_Example(MovingCameraScene):
     def construct(self):
-        chess_board = manim_chess.board.Board()
+        chess_board = manim_chess.Board()
         chess_board.set_board_from_FEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") # Also can set the default board with no arguments
 
         # You can paste a PGN straight from wherever you got your pgn. Just make it a multiline string with """PGN"""
-        moves = manim_chess.game_player.convert_from_PGN("""[Event "It (cat.17)"]
+        moves = manim_chess.convert_from_PGN("""[Event "It (cat.17)"]
 [Site "Wijk aan Zee (Netherlands)"]
 [Date "1999.??.??"]
 [Round "4"]
@@ -98,7 +100,7 @@ Rd2 44. Qa7 1-0""")
 
         self.add(chess_board)
         self.wait()
-        manim_chess.game_player.play_game(scene=self, board=chess_board, moves=moves)
+        manim_chess.play_game(scene=self, board=chess_board, moves=moves)
         self.wait()
 ```
 

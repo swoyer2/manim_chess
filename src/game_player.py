@@ -1,7 +1,6 @@
 from .board import *
 from .evaluation_bar import *
 
-import time
 import re
 from typing import Tuple
 
@@ -36,7 +35,6 @@ def play_game(scene, board: Board, moves: list[Tuple[str, str, str]], eval_bar: 
         evals.append(0)
 
     for move, evaluation in zip(moves, evals):
-        start_time = time.time()  # Start timing
 
         # Check for en passant, if True then remove the captured piece
         if __check_for_en_passant(board, move):
@@ -62,9 +60,6 @@ def play_game(scene, board: Board, moves: list[Tuple[str, str, str]], eval_bar: 
         if eval_bar:
             scene.play(eval_bar.set_evaluation(evaluation))
         
-    
-        end_time = time.time()  # End timing
-        print(f"Took {end_time - start_time:.2f} seconds to execute.")  # Print the duration
         scene.wait()
 
 def __check_for_en_passant(board: Board, move: Tuple[str, str, str]) -> bool:
