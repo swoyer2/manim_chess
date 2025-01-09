@@ -107,7 +107,7 @@ Rd2 44. Qa7 1-0""")
 ### Evaluation Bar
 This example shows how to add and adjust the values of the evaluation bar
 
-![PGNExample](https://github.com/codevardhan/manim-chess-plugin/blob/main/example/PlayPGNExample.gif?raw=true)
+![EvalBarExample](https://github.com/swoyer2/manim_chess/blob/main/gifs/eval_bar.gif)
 
 
 ```python
