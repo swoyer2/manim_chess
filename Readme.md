@@ -30,7 +30,7 @@ below.
 ### Moving Pieces
 This example initializes the chessboard and shows how you can move a piece.
 
-![MovingPieces](https://github.com/codevardhan/manim-chess-plugin/blob/main/example/MovePieceExampleGif.gif?raw=true)
+![MovingPieces](https://github.com/swoyer2/manim_chess/blob/main/gifs/moving_pieces.gif)
 
 
 ```python
