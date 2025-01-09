@@ -16,7 +16,6 @@ pip install manim-chess
 - **Special Moves**: Handle special chess moves like castling and en passant.
 - **Load FEN Strings**: Load and display a board configuration from a FEN string.
 - **Play PGN Files**: Load and animate moves from PGN files.
-- **Basic Sounds**: Moving a piece and castling sounds.
 - **Evaluation Bar**: Allows the creation and ability to display an evaluation bar.
 - **Update Evaluation Bar**: Can update the value in the evaluation bar with externally obtained evaulations.
 - **Mark Squares**: Can mark and unmark squares to highlight them.
