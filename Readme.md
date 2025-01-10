@@ -158,6 +158,35 @@ class MarkSquaresExample(MovingCameraScene):
         self.wait()
 ```
 
+### Draw Arrows
+This is how you would draw and remove arrows.
+
+![DrawArrowsExample](https://github.com/swoyer2/manim_chess/blob/main/gifs/draw_arrows_example.gif)
+
+
+```python
+from manim import *
+import manim_chess
+
+
+class DrawArrowsExample(MovingCameraScene):
+    def construct(self):
+        chess_board = manim_chess.Board()
+        chess_board.set_board_from_FEN()
+
+        self.add(chess_board)
+
+        chess_board.draw_arrow('e2', 'e4')
+        self.wait()
+        chess_board.draw_arrow('b8', 'c6')
+        self.wait()
+        chess_board.draw_arrow('b1', 'a3')
+        self.wait()
+        chess_board.remove_arrows()
+        self.wait()
+```
+
+
 ### Running the Examples
 To run any of the examples, execute the script using Manim. For instance, here is an example on how to render the first example with low quality (if you want high quality replace -pql with -hql)
 

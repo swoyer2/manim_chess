@@ -406,7 +406,7 @@ class Board(Mobject):
         dir_x = subtracted_position_vectors[0]
         dir_y = subtracted_position_vectors[1]
         if dir_x == 0 or dir_y == 0 or abs(dir_x) == abs(dir_y):
-            arrow = Line(stroke_width=15, stroke_opacity=0.8, fill_color=ARROW_COLOR, stroke_color=ARROW_COLOR)
+            arrow = Line(stroke_width=15, stroke_opacity=.8, fill_color=ARROW_COLOR, stroke_color=ARROW_COLOR)
             arrow.reset_endpoints_based_on_tip = lambda *args: None
             arrow.set_points_as_corners([end_position - end_position_buffer, tip_position - tip_position_buffer])
             tip = arrow.create_tip()
@@ -414,9 +414,9 @@ class Board(Mobject):
             finished_arrow = VGroup(arrow, tip)
             self.add(finished_arrow)
         else:
-            arrow0 = Line(stroke_width=15, stroke_opacity=0.5, fill_color=ARROW_COLOR, stroke_color=ARROW_COLOR)
+            arrow0 = Line(stroke_width=15, stroke_opacity=.8, fill_color=ARROW_COLOR, stroke_color=ARROW_COLOR)
             arrow0.reset_endpoints_based_on_tip = lambda *args: None
-            arrow1 = Line(stroke_width=15, stroke_opacity=0.8, fill_color=ARROW_COLOR, stroke_color=ARROW_COLOR)
+            arrow1 = Line(stroke_width=15, stroke_opacity=.8, fill_color=ARROW_COLOR, stroke_color=ARROW_COLOR)
             arrow1.reset_endpoints_based_on_tip = lambda *args: None
 
             if dir_y > 0:
@@ -429,14 +429,16 @@ class Board(Mobject):
             else:
                 buffer_x = np.array([-0.25, 0, 0])
 
+            tip_buffer = -0.07 if dir_x > 0 else 0.07
+
             if abs(dir_y) > abs(dir_x):
                 arrow0.set_points_as_corners([end_position - buffer_y, np.array([end_position[0], tip_position[1], 0])])
-                arrow1.set_points_as_corners([np.array([end_position[0], tip_position[1], 0]), tip_position + buffer_x])
+                arrow1.set_points_as_corners([np.array([end_position[0]-tip_buffer, tip_position[1], 0]), tip_position + buffer_x])
                 tip = arrow1.create_tip()
                 tip.move_to(tip_position + buffer_x)
             else:
                 arrow0.set_points_as_corners([end_position - buffer_x, np.array([tip_position[0], end_position[1], 0])])
-                arrow1.set_points_as_corners([np.array([tip_position[0], end_position[1], 0]), tip_position + buffer_y])
+                arrow1.set_points_as_corners([np.array([tip_position[0]-tip_buffer, end_position[1], 0]), tip_position + buffer_y])
                 tip = arrow1.create_tip()
                 tip.move_to(tip_position + buffer_y)
 
