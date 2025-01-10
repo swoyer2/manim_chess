@@ -2,6 +2,7 @@ setup.py
 manim_chess/manim_chess.egg-info/PKG-INFO
 manim_chess/manim_chess.egg-info/SOURCES.txt
 manim_chess/manim_chess.egg-info/dependency_links.txt
+manim_chess/manim_chess.egg-info/requires.txt
 manim_chess/manim_chess.egg-info/top_level.txt
 manim_chess/src/__init__.py
 manim_chess/src/board.py
