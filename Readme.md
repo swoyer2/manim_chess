@@ -131,6 +131,33 @@ class EvalBarExample(MovingCameraScene):
         self.wait()
 ```
 
+### Marking Squares
+This example shows how to mark and unmark squares on the chessboard.
+
+![MarkSquaresExample](https://github.com/swoyer2/manim_chess/blob/main/gifs/mark_squares_example.gif)
+
+
+```python
+from manim import *
+import manim_chess
+
+
+class MarkSquaresExample(MovingCameraScene):
+    def construct(self):
+        chess_board = manim_chess.Board()
+        chess_board.set_board_from_FEN()
+
+        self.add(chess_board)
+
+        chess_board.mark_square('e4')
+        self.wait()
+        chess_board.mark_square('c5')
+        self.wait()
+        chess_board.unmark_square('e4')
+        chess_board.unmark_square('c5')
+        self.wait()
+```
+
 ### Running the Examples
 To run any of the examples, execute the script using Manim. For instance, here is an example on how to render the first example with low quality (if you want high quality replace -pql with -hql)
 
