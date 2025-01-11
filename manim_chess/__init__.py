@@ -9,3 +9,4 @@ from .pieces import (
 from .board import Board
 from .evaluation_bar import EvaluationBar
 from .game_player import play_game
+from .game_player import convert_from_PGN

@@ -1,0 +1,16 @@
+[project]
+name = "manim-chess"
+version = "0.0.31"
+description = ""
+authors = [
+    {name = "swoyer2",email = "swoyer.logan@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
