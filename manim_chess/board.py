@@ -40,6 +40,8 @@ class Board(Mobject):
         Converts a linear index to a board coordinate.
     set_board_from_FEN(FEN):
         Sets up the board pieces according to a FEN string.
+    clear_board():
+        Removes all pieces from the board.
     is_light_square(coordinate):
         Determines if a square is a light-colored square.
     mark_square(coordinate):
@@ -263,6 +265,14 @@ class Board(Mobject):
                 coordinate = self.get_coordinate_from_index(current_index)
                 self.add_piece(char.upper(), char.isupper(), coordinate)
                 current_index += 1
+
+    def clear_board(self) -> None:
+        """
+        Removes all pieces from the board.
+        """
+        for coordinate in self.pieces:
+            self.remove(self.pieces[coordinate])
+        self.pieces = {}
 
     def is_light_square(self, coordinate: str) -> bool:
         """
