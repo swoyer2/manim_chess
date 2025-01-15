@@ -428,9 +428,7 @@ class Board(Mobject):
             self.add(finished_arrow)
         else:
             arrow0 = Line(stroke_width=15, stroke_opacity=.8, fill_color=ARROW_COLOR, stroke_color=ARROW_COLOR)
-            arrow0.reset_endpoints_based_on_tip = lambda *args: None
             arrow1 = Line(stroke_width=15, stroke_opacity=.8, fill_color=ARROW_COLOR, stroke_color=ARROW_COLOR)
-            arrow1.reset_endpoints_based_on_tip = lambda *args: None
 
             if dir_y > 0:
                 buffer_y = np.array([0, 0.25, 0])
@@ -451,7 +449,7 @@ class Board(Mobject):
                 tip.move_to(tip_position + buffer_x)
             else:
                 arrow0.set_points_as_corners([end_position - buffer_x, np.array([tip_position[0], end_position[1], 0])])
-                arrow1.set_points_as_corners([np.array([tip_position[0]-tip_buffer, end_position[1], 0]), tip_position + buffer_y])
+                arrow1.set_points_as_corners([np.array([tip_position[0], end_position[1]+tip_buffer, 0]), tip_position + buffer_y])
                 tip = arrow1.create_tip()
                 tip.move_to(tip_position + buffer_y)
 
