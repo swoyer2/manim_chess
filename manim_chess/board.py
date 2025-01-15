@@ -24,7 +24,11 @@ class Board(Mobject):
     color_dark : ManimColor
         The manim color of the dark squares 
     color_light : ManimColor
-        The manim color of the light squares 
+        The manim color of the light squares
+    color_highlight_light : ManimColor
+        The manim color of the highlight on dark squares 
+    color_highlight_dark : ManimColor
+        The manim color of the highlight on light squares 
 
     Methods:
     -------
