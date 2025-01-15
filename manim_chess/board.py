@@ -21,6 +21,10 @@ class Board(Mobject):
         A list of coordinates of squares that are currently highlighted.
     arrows : list
         A list of arrow objects currently drawn on the board.
+    color_dark : ManimColor
+        The manim color of the dark squares 
+    color_light : ManimColor
+        The manim color of the light squares 
 
     Methods:
     -------
@@ -66,11 +70,15 @@ class Board(Mobject):
         Returns the piece at a given coordinate, if any.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, color_dark='#769656', color_light='#eeeed2', color_highlight_light='#F7F769', color_highlight_dark='#BBCB2B') -> None:
         """
         Initializes the Board object.
         """
         super().__init__()
+        self.color_dark = ManimColor(color_dark)
+        self.color_light = ManimColor(color_light)
+        self.color_highlight_light = ManimColor(color_highlight_light)
+        self.color_highlight_dark = ManimColor(color_highlight_dark)
         self.size_of_board = 8
         self.cell_size = 0.8  # Size of each square in the board
         self.squares = {}  # squares[coordinate] = square
@@ -90,8 +98,8 @@ class Board(Mobject):
 
         for row in range(self.size_of_board):
             for col in range(self.size_of_board):
-                CHESS_GREEN = ManimColor('#769656')
-                CHESS_WHITE = ManimColor('#eeeed2')
+                CHESS_GREEN = self.color_dark
+                CHESS_WHITE = self.color_light
                 color = CHESS_WHITE if (row + col) % 2 else CHESS_GREEN
                 # Create a square for each cell in the board
                 square = Square(side_length=self.cell_size)
@@ -123,12 +131,9 @@ class Board(Mobject):
         number : str
             The number to be displayed on the square.
         """
-        CHESS_GREEN = ManimColor('#769656')
-        CHESS_WHITE = ManimColor('#eeeed2')
-
         offset = np.array([self.cell_size / 8, -self.cell_size / 6, 0])
 
-        number_color = CHESS_WHITE if square.fill_color == CHESS_GREEN else CHESS_GREEN
+        number_color = self.color_light if square.fill_color == self.color_dark else self.color_dark
         number = Text(f'{number}', color=number_color, font_size=14 * self.cell_size, font="Arial")
         square_top_left = square.get_center() + np.array([-self.cell_size / 2, self.cell_size / 2, 0])
         number.move_to(square_top_left + offset)
@@ -145,12 +150,10 @@ class Board(Mobject):
         letter : str
             The letter to be displayed on the square.
         """
-        CHESS_GREEN = ManimColor('#769656')
-        CHESS_WHITE = ManimColor('#eeeed2')
 
         offset = np.array([-self.cell_size / 8, self.cell_size / 6, 0])
 
-        letter_color = CHESS_WHITE if square.fill_color == CHESS_GREEN else CHESS_GREEN
+        letter_color = self.color_light if square.fill_color == self.color_dark else self.color_dark
         letter = Text(f'{letter}', color=letter_color, font_size=14 * self.cell_size, font="Arial")
         square_bot_right = square.get_center() + np.array([self.cell_size / 2, -self.cell_size / 2, 0])
         letter.move_to(square_bot_right + offset)
@@ -326,13 +329,11 @@ class Board(Mobject):
         coordinate : str
             The coordinate of the square to be unmarked.
         """
-        CHESS_GREEN = ManimColor('#769656')
-        CHESS_WHITE = ManimColor('#eeeed2')
 
         if self.is_light_square(coordinate):
-            self.squares[coordinate].set_fill(CHESS_WHITE)
+            self.squares[coordinate].set_fill(self.color_light)
         else:
-            self.squares[coordinate].set_fill(CHESS_GREEN)
+            self.squares[coordinate].set_fill(self.color_dark)
 
         # Add back text on square if needed
         if coordinate[1] == '1':
@@ -349,13 +350,11 @@ class Board(Mobject):
         coordinate : str
             The coordinate of the square to be highlighted.
         """
-        LIGHT_HIGHLIGHT_COLOR = ManimColor('#F7F769')
-        DARK_HIGHLIGHT_COLOR = ManimColor('#BBCB2B')
 
         if self.is_light_square(coordinate):
-            self.squares[coordinate].set_fill(LIGHT_HIGHLIGHT_COLOR)
+            self.squares[coordinate].set_fill(self.color_highlight_light)
         else:
-            self.squares[coordinate].set_fill(DARK_HIGHLIGHT_COLOR)
+            self.squares[coordinate].set_fill(self.color_highlight_dark)
 
         # Add back text on square if needed
         if coordinate[1] == '1':
