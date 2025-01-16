@@ -449,7 +449,7 @@ class Board(Mobject):
                 tip.move_to(tip_position + buffer_x)
             else:
                 arrow0.set_points_as_corners([end_position - buffer_x, np.array([tip_position[0], end_position[1], 0])])
-                arrow1.set_points_as_corners([np.array([tip_position[0], end_position[1]+tip_buffer, 0]), tip_position + buffer_y])
+                arrow1.set_points_as_corners([np.array([tip_position[0], end_position[1]-tip_buffer, 0]), tip_position + buffer_y])
                 tip = arrow1.create_tip()
                 tip.move_to(tip_position + buffer_y)
 
