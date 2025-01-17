@@ -58,6 +58,8 @@ class Board(Mobject):
         Resets a square to its original color.
     highlight_square(coordinate):
         Highlights a square with a specific color.
+    clear_highlights():
+        Clears the highlights on the board.
     get_arrow_buffer(end_position, tip_position):
         Calculates buffer positions for drawing arrows.
     draw_arrow(end_coordinate, tip_coordinate):
@@ -280,6 +282,7 @@ class Board(Mobject):
         for coordinate in self.pieces:
             self.remove(self.pieces[coordinate])
         self.pieces = {}
+        self.clear_higlights()
 
     def is_light_square(self, coordinate: str) -> bool:
         """
@@ -478,6 +481,13 @@ class Board(Mobject):
         for arrow in self.arrows:
             self.remove(arrow)
 
+    def clear_higlights(self):
+        """
+        Removes all highlights from the board.
+        """
+        for coordinate in self.highlighted_squares:
+            self.unmark_square(coordinate)
+
     def move_piece(self, starting_coordinate: str, ending_coordinate: str) -> None:
         """
         Moves a piece from one square to another.
@@ -496,8 +506,7 @@ class Board(Mobject):
             self.pieces[ending_coordinate] = piece_to_move
             del self.pieces[starting_coordinate]
 
-            for coordinate in self.highlighted_squares:
-                self.unmark_square(coordinate)
+            self.clear_higlights()
             self.highlighted_squares = []
 
             piece_to_move.move_to(self.squares[ending_coordinate].get_center())
