@@ -1,6 +1,6 @@
 [project]
 name = "manim-chess"
-version = "0.0.37"
+version = "0.0.38"
 description = "A plugin for animating chessboards. Includes additional features such as PGN conversion, arrows, etc."
 authors = [
     {name = "swoyer2",email = "swoyer.logan@gmail.com"}

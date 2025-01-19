@@ -421,7 +421,7 @@ class Board(Mobject):
         subtracted_position_vectors = end_position - tip_position
         dir_x = subtracted_position_vectors[0]
         dir_y = subtracted_position_vectors[1]
-        if dir_x == 0 or dir_y == 0 or abs(dir_x) == abs(dir_y):
+        if dir_x == 0 or dir_y == 0 or round(abs(dir_x), 1) == round(abs(dir_y), 1):
             arrow = Line(stroke_width=15, stroke_opacity=.8, fill_color=ARROW_COLOR, stroke_color=ARROW_COLOR)
             arrow.reset_endpoints_based_on_tip = lambda *args: None
             arrow.set_points_as_corners([end_position - end_position_buffer, tip_position - tip_position_buffer])
