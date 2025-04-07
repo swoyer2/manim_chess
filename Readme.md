@@ -188,7 +188,7 @@ class DrawArrowsExample(MovingCameraScene):
 
 
 ### Running the Examples
-To run any of the examples, execute the script using Manim. For instance, here is an example on how to render the first example with low quality (if you want high quality replace -pql with -hql)
+To run any of the examples, execute the script using Manim. For instance, here is an example on how to render the first example with low quality (if you want high quality replace -pql with -pqh)
 
 ```sh
 manim -pql examples.py MovingPieces
