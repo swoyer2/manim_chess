@@ -312,6 +312,19 @@ class Board(Mobject):
             else:
                 return False
 
+    def _set_square_color(self, coordinate: str, color: ManimColor) -> None:
+        """
+        Recolors a square without recoloring the file and rank labels on it.
+
+        Parameters:
+        ----------
+        coordinate : str
+            The coordinate of the square to be recolored.
+        color : ManimColor
+            The new fill color of the square.
+        """
+        self.squares[coordinate].set_fill(color, family=False)
+
     def mark_square(self, coordinate: str) -> None:
         """
         Marks a square with a specific color.
@@ -322,13 +335,7 @@ class Board(Mobject):
             The coordinate of the square to be marked.
         """
         MARK_COLOR = ManimColor('#EC7D6A')
-        self.squares[coordinate].set_fill(MARK_COLOR)
-
-        # Add back text on square if needed
-        if coordinate[1] == '1':
-            self.add_letter_label(self.squares[coordinate], coordinate[0])
-        if coordinate[0] == 'a':
-            self.add_number_label(self.squares[coordinate], coordinate[1])
+        self._set_square_color(coordinate, MARK_COLOR)
 
     def unmark_square(self, coordinate: str) -> None:
         """
@@ -341,15 +348,9 @@ class Board(Mobject):
         """
 
         if self.is_light_square(coordinate):
-            self.squares[coordinate].set_fill(self.color_light)
+            self._set_square_color(coordinate, self.color_light)
         else:
-            self.squares[coordinate].set_fill(self.color_dark)
-
-        # Add back text on square if needed
-        if coordinate[1] == '1':
-            self.add_letter_label(self.squares[coordinate], coordinate[0])
-        if coordinate[0] == 'a':
-            self.add_number_label(self.squares[coordinate], coordinate[1])
+            self._set_square_color(coordinate, self.color_dark)
 
     def highlight_square(self, coordinate: str) -> None:
         """
@@ -362,15 +363,9 @@ class Board(Mobject):
         """
 
         if self.is_light_square(coordinate):
-            self.squares[coordinate].set_fill(self.color_highlight_light)
+            self._set_square_color(coordinate, self.color_highlight_light)
         else:
-            self.squares[coordinate].set_fill(self.color_highlight_dark)
-
-        # Add back text on square if needed
-        if coordinate[1] == '1':
-            self.add_letter_label(self.squares[coordinate], coordinate[0])
-        if coordinate[0] == 'a':
-            self.add_number_label(self.squares[coordinate], coordinate[1])
+            self._set_square_color(coordinate, self.color_highlight_dark)
 
     def get_arrow_buffer(self, end_position: np.array, tip_position: np.array) -> Tuple[np.array]:
         """
